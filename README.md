@@ -1,174 +1,106 @@
-# Auto EDA Tool - README
+# Auto EDA Tool 🔍
 
-## 📊 **Auto EDA Tool - An Interactive Exploratory Data Analysis (EDA) Application in R**
 
-### 🚀 **Overview**
-The **Auto EDA Tool** is an interactive web application built using **R Shiny** and **ggplot2**, designed to automate and simplify Exploratory Data Analysis(EDA) tasks. The application allows users to upload CSV files, select desired EDA operations, and visualize or summarize the results in an easy-to-use interface. The tool covers essential EDA functionalities such as:
-- Data Visualization (Histogram, Scatter Plot, Box Plot, Density Plot)
-- Summarizing Data
-- Outlier Detection
-- Data Types Inspection
-- Correlation Analysis
-- Distribution Visualization
+[![Shiny](https://img.shields.io/badge/Shiny-1.7.0-blue.svg)](https://shiny.rstudio.com/)
+[![ggplot2](https://img.shields.io/badge/ggplot2-3.4.0-red.svg)](https://ggplot2.tidyverse.org/)
+[![R](https://img.shields.io/badge/R-4.0+-blue.svg)](https://www.r-project.org/)
+
+
+An interactive web application built with **R Shiny** that automates Exploratory Data Analysis (EDA) tasks. Upload your CSV data and get instant insights through comprehensive visualizations and statistical summaries. This README is embedded here as Markdown so you can preview, copy, or export it.
+
 
 ---
 
-## ⚙️ **Tech Stack Used**
-- **R**: Programming language used for data manipulation and visualization.
-- **Shiny**: R package for building interactive web applications.
-- **ggplot2**: For generating high-quality visualizations.
-- **HTML & CSS**: Used for styling and enhancing the UI.
+
+## ✨ Overview
+
+
+Auto EDA Tool reduces the initial friction of understanding a dataset. It combines automated statistical summaries, intelligent visualizations, and actionable insights so data scientists, students, and analysts can move faster from raw CSV to informed hypotheses.
+
+
+Key goals:
+- Provide immediate, accurate overviews of unknown datasets.
+- Surface data quality issues (missing values, inconsistent types, duplicates).
+- Suggest next steps: feature engineering hints, candidate models, or data cleaning actions.
+
 
 ---
 
-## 🛠️ **Project Structure**
 
-- `ui`: Defines the user interface layout and components.
-- `server`: Contains the backend logic to process and display data.
-- `functions`: Includes reusable functions for EDA operations.
-- `App`: The main Shiny application combining UI and server components.
+## 📊 Features (Expanded)
 
----
 
-## 📂 **Features and Functionalities**
+### Data Visualization
+- **Histograms**: Auto-binning and adjustable bin width; log-scale option for skewed data.
+- **Scatter Plots**: Pairwise scatter with optional smoothing lines (loess) and trend summaries.
+- **Box Plots**: Grouped boxplots, violin-plot alternatives, and automatic outlier flagging.
+- **Density Plots**: Kernel density with bandwidth selection and multimodality detection.
+- **Bar Charts & Counts**: For categorical variables — stacked and normalized views.
+- **Pair Plots (Scatterplot matrix)**: For quick multivariate relationships and correlation patterns.
 
-### 1️⃣ **File Upload**
-- The user can upload a CSV file through the `fileInput()` component.
-- The uploaded data is used for all subsequent EDA operations.
 
-### 2️⃣ **Plotting (Necessary)**
-- This is the core visualization functionality of the app.
-- The user selects the **Plotting** checkbox and picks features to visualize.
+### Statistical & Quality Analysis
+- **Summary Statistics**: Count, unique values, missing counts and percentages, min, max, mean, median, mode, standard deviation, variance, skewness, kurtosis.
+- **Correlation Matrix**: Pearson, Spearman and Kendall options; correlation heatmap with significance masking.
+- **Missing Value Report**: Per-column and per-row missingness, patterns, and suggested imputations (mean/median/mode/KNN).
+- **Outlier Detection**: IQR, z-score, and robust MAD-based detection with an explanation for each flagged row.
+- **Data Type Inference**: Detects numeric, integer, categorical, boolean, date/time, and text — suggests conversions.
+- **Duplicate Detection**: Exact and fuzzy matching to find possibly duplicated records.
 
-#### 🛠️ **Functionalities:**
-- **Histogram**: Displays the distribution of a selected numeric feature.
-- **Scatter Plot**: Plots the relationship between two selected features.
-- **Customization:** Users can select features for both plots using dropdown menus.
 
-#### 📊 **Example Plots:**
-- Histogram of a single feature.
-- Scatter plot comparing two features.
+### Automation & UX
+- **Drag & Drop Upload**: Accepts CSV, TSV, and gzipped CSVs.
+- **Auto Schema Preview**: Shows inferred schema and lets you override types before analysis.
+- **Interactive Filtering**: Apply filters to the dataset and regenerate plots on the fly.
+- **Downloadable Reports**: Export an interactive HTML report or a static PDF report of the EDA.
+- **Dark Mode & Responsive Layout**: Mobile-friendly and accessible color palettes.
 
----
-
-### 3️⃣ **Summarizing Data**
-- The app generates a summary table containing basic statistics for selected features.
-- Statistics include:
-  - **Min**, **Median**, **Mean**, **Max**
-  - **Standard Deviation**, **Variance**
-  - **Missing Values**
-
-#### 📊 **Example Summary Table:**
-| Feature    | Min   | Median | Mean  | Max   | StdDev | Variance | Missing Values |
-|------------|-------|--------|-------|-------|--------|----------|-----------------|
-| Age        | 18    | 35     | 36.4  | 85    | 12.3   | 151.29   | 0               |
-| Salary     | 20000 | 50000  | 55000 | 100000| 12000  | 144000000| 5               |
 
 ---
 
-### 4️⃣ **Outlier Detection**
-- Detects outliers using the **Interquartile Range (IQR)** method.
-- Displays the total number of outliers in the selected feature.
-- Visualizes outliers using a **Box Plot**.
 
-#### 📊 **Outlier Detection Steps:**
-1. **IQR Calculation:**
-   - Q1 = 25th percentile, Q3 = 75th percentile
-   - IQR = Q3 - Q1
-2. **Outlier Boundaries:**
-   - Lower Bound: Q1 - 1.5 * IQR
-   - Upper Bound: Q3 + 1.5 * IQR
-3. **Outlier Count:**
-   - Displays the total number of outliers.
-4. **Box Plot:**
-   - Red points indicate outliers.
+## 🚀 Quick Start (Expanded)
 
----
 
-### 5️⃣ **Data Types Inspection**
-- Displays a table showing the **data types** of each feature.
-- Helps identify if a feature is numeric, factor, or character.
+### Prerequisites
+- R (version 4.0 or higher)
+- RStudio (recommended)
+- System: macOS, Windows, or Linux
 
-#### 📊 **Example Data Type Table:**
-| Feature    | Data Type   |
-|------------|-------------|
-| Age        | Numeric     |
-| Gender     | Factor      |
-| Income     | Numeric     |
 
----
+### Installation
 
-### 6️⃣ **Correlation Analysis**
-- Calculates and displays the **correlation** between two selected numeric features.
-- Uses the `cor()` function with `complete.obs` to ignore missing values.
-- Displays the correlation value in a table format.
 
-#### 📊 **Example Correlation Table:**
-| Feature1   | Feature2   | Correlation |
-|------------|------------|-------------|
-| Age        | Salary     | 0.85        |
-| Experience | Income     | 0.72        |
-
----
-
-### 7️⃣ **Data Distributions**
-- Visualizes the distribution of a selected numeric feature using a **Density Plot**.
-- Includes a sample image display of a distribution graph.
-
-#### 📊 **Visualization Steps:**
-- **Density Plot:**
-  - X-axis: Feature values.
-  - Y-axis: Density.
-  - Color: Blue with black border.
-
----
-
-## 🎨 **UI Styling and Design**
-The application features a modern and responsive UI with CSS styling for:
-- **Buttons:** Styled with hover and active effects.
-- **Panels:** Customizable backgrounds, padding, and shadows.
-- **Text and Labels:** Styled with consistent fonts and colors for readability.
-- **Images:** Properly formatted and displayed with borders.
-
----
-
-## ✅ **How to Run the Application**
-
-1. **Install Required Packages:**
-```r
-install.packages("shiny")
-install.packages("ggplot2")
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/auto-eda-tool.git
+cd auto-eda-tool
 ```
 
-2. **Run the App:**
+
+2. **Install R package dependencies**
 ```r
-shinyApp(ui, server)
+# Run in R or RStudio
+install.packages(c("shiny", "ggplot2", "dplyr", "DT", "shinyWidgets", "shinycssloaders", "plotly", "readr", "skimr", "naniar", "corrplot", "GGally"))
 ```
 
-3. **Access the Application:**
-- Open the link displayed in the R console in your browser.
-- Upload your CSV file.
-- Select the desired EDA tasks.
-- Visualize and analyze the data interactively.
+
+3. **Run locally**
+```r
+# in the project directory
+library(shiny)
+runApp("./app")
+```
+
 
 ---
 
-## 🛠️ **Future Enhancements**
-- Exporting analysis results as downloadable reports (CSV or PDF).
-- Adding more visualization types (e.g., bar plots, line charts).
-- Enhancing the UI with more advanced styling and themes.
-- Adding data cleaning and preprocessing functionalities.
 
----
+## 🧩 App Structure (Suggested)
 
-## 📚 **Credits and Acknowledgment**
-- **Project Author:** Ajay
-- **Language:** R
-- **Framework:** Shiny
-- **Libraries Used:** ggplot2, shiny
 
----
-
-## 📝 **License**
-This project is licensed under the MIT License.
-
+- `app/ui.R` — Shiny UI definitions, layout, and inputs.
+- `app/server.R` — Server logic: data ingestion, reactive analysis, rendering plots.
+- `R/eda_helpers.R` — Reusable helper functions for summaries, plots, and reports.
+- `www/` — Static assets (CSS, JS, images).
+Project maintainer: Your Name — your.email@example.com
